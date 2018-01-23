@@ -32,13 +32,19 @@
                         ['Yes', 'No'], 0);
     
     var questions = [q1, q2, q3];
-    
-    var randomQ = Math.floor(Math.random() * questions.length);
-    
-    questions[randomQ].showQuestion();
-    
-    var userAnswer = parseInt(prompt('Please provide the answer'));
-    
-    questions[randomQ].checkAnswer(userAnswer);
+
+
+    function nextQuestion() {
+        var randomQ = Math.floor(Math.random() * questions.length);
+        questions[randomQ].showQuestion();
+        var userAnswer = prompt('Please provide the answer');
+        
+        if(userAnswer !== 'exit') {
+            questions[randomQ].checkAnswer(parseInt(userAnswer));
+            nextQuestion();
+        }
+    }
+
+    nextQuestion(); 
     
 })();
